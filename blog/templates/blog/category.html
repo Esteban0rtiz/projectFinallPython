@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="blog-post" style="margin-bottom: 40px;">
+          {% for blog in listBlogs %}
+            <h2 class="blog-title" style="font-size: 24px; margin-bottom: 10px;">{{ blog.title }}</h2>
+            <p class="blog-meta" style="font-size: 14px; color: #777;">Publicado por <strong>{{ blog.author }}</strong> el {{ blog.published|date:"d/m/Y" }}</p>
+            <img class="img-fluid rounded" src="{{ blog.image.url }}" alt="{{ blog.title }}" style="max-width: 300px; margin-bottom: 10px;">
+            <p class="blog-content" style="font-size: 16px;">{{ blog.content }}</p>
+            <p class="blog-categories" style="margin-top: 10px;">
+              Categorías:
+              {% for category in blog.categories.all %}
+                <a href="{% url 'category' categoryId=category.id %}" class="btn btn-sm btn-info">{{ category.name }}</a>
+              {% endfor %}
+            </p>
+            <hr style="margin-top: 20px;">
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

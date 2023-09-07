@@ -38,7 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'core',
+    'shop',  
+    'contact',  
+    'social', 
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.processors.context'
             ],
         },
     },
@@ -105,13 +111,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Guayaquil'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = True       
 
 
 # Static files (CSS, JavaScript, Images)
@@ -119,7 +125,10 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+#MEDIA FILES
+MEDIA_URL= '/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR, "media")
 
 
 
@@ -128,3 +137,37 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Ckeditor 
+
+CKEDITOR_CONFIGS = { 
+
+    'default': { 
+
+        'toolbar': 'Custom', 
+
+        'toolbar_Custom': [ 
+
+            ['Bold', 'Italic', 'Underline'], 
+
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',  
+
+             'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], 
+
+            ['Link', 'Unlink'], 
+
+            ['RemoveFormat', 'Source'] 
+
+        ] 
+
+    } 
+
+} 
+
+# MAILTRAP
+
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '1c73be7561869a'
+EMAIL_HOST_PASSWORD = '403f9a305c7498'
+EMAIL_PORT = '2525'
+
